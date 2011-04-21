@@ -1,0 +1,5 @@
+export( 
+MetaPCA, 
+requireAll,
+DropDupGenes
+)
