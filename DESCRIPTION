@@ -11,5 +11,5 @@ Suggests: MASS, GEOquery, pcaPP, affy, hgu133plus2.db, doMC, doSMP, ellipse, imp
 License: GPL-2
 URL: https://github.com/donkang75/MetaPCA
 LazyLoad: yes
-Collate: MetaPCA.R functions.R DropDupGenes.R requireAll.R
+Collate: MetaPCA.R functions.R DropDupGenes.R requireAll.R PlotPC2D.R PreprocessMetaAnalysis.R
 Date: 2011-04-21

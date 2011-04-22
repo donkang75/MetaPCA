@@ -30,10 +30,10 @@ Whether to remove genes which have no annotation. Default is TRUE.
 %%  ~~ If necessary, more details than the description above ~~
 }
 \value{
-None
+A gene expression matrix which has unique genes in rows and samples in columns. 
 }
 \references{
-%% ~put references to the literature/web site here ~
+Dongwan D. Kang and George C. Tseng. (2011) Meta-PCA: Meta-analysis in the Dimension Reduction of Microarray data. 
 }
 \author{
 Don Kang (donkang75@gmail.com)
