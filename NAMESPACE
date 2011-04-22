@@ -1,5 +1,7 @@
 export( 
 MetaPCA, 
 requireAll,
-DropDupGenes
+DropDupGenes,
+PlotPC2D,
+PreprocessMetaAnalysis
 )
