@@ -1,41 +1,3 @@
-
-#from matrixStats
-colSds <- function (x, center = NULL, ...) {
-	x <- t(x)
-	n <- !is.na(x)
-	n <- rowSums(n)
-	n[n <= 1] <- NA
-	if (is.null(center)) {
-		center <- rowMeans(x, ...)
-	}
-	x <- x - center
-	x <- x * x
-	x <- rowSums(x, ...)
-	x <- x/(n - 1)
-	sqrt(x)
-}
-
-#maxFeatures at most
-MetaSoftThreshold <- function(aMat, maxFeatures, lambda){
-	.rs <- rowSums(abs(aMat))
-	
-	if(!is.null(maxFeatures)) 
-		lambda <- max(lambda, sort(.rs, decreasing=TRUE)[maxFeatures+1])
-	
-	aMat[which(.rs <= lambda),] <- 0 #less than overall threshold
-	
-	tmp <- abs(aMat) - lambda/ncol(aMat) #substract individual threshold
-	tmp[tmp<0] <- 0 #less than individual threshold
-	sign(aMat) * tmp 
-}
-
-#pxn 
-NormalizeMatrix <- function(mat) {
-	.norm <- sqrt(colSums(mat^2))
-	.norm <- ifelse(.norm==0, 1, .norm)
-	sweep(mat, 2, .norm, '/')
-}
-
 PreprocessMetaAnalysis <- function(DList, cutRatioByMean=.4, cutRatioByVar=.4, doImpute=FALSE, na.rm.pct=.1, na.rm.pct.each=.5, verbose=FALSE) {	
 	studies <- names(DList)
 	
@@ -92,7 +54,7 @@ PreprocessMetaAnalysis <- function(DList, cutRatioByMean=.4, cutRatioByVar=.4, d
 	DList <- foreach(dat=iter(DList)) %do% {
 		dat[order(rowSums(DList.rankV),decreasing=TRUE)[1:numLeft],]
 	} 
-
+	
 	names(DList) <- studies
 	return(DList)
 }
@@ -136,7 +98,7 @@ PlotPC2D <- function(coord, drawObjects=TRUE, drawEllipse=FALSE, dataset.name=NU
 		else #*nix
 			X11()
 	}
-		 
+	
 	
 	if(drawEllipse) {
 		requireAll(c("ellipse","MASS"))
@@ -175,7 +137,7 @@ PlotPC2D <- function(coord, drawObjects=TRUE, drawEllipse=FALSE, dataset.name=NU
 			legend2(.legend, legend=c(levels(.label),levels(.label2)), pch=c(rep(-1,nlevels(.label)), .class2.shape), fill=c(.class.color, rep(-1,nlevels(.label2))))
 		} else
 			legend(.legend, legend=levels(.label), text.col=.class.color, pch=20, col=.class.color)
-
+		
 		.pctInfo <- c(ifelse(is.null(pctInfo), "", paste(" (",pctInfo[1],"%)",sep="")),
 				ifelse(is.null(pctInfo), "", paste(" (",pctInfo[2],"%)",sep="")))
 		
@@ -187,6 +149,49 @@ PlotPC2D <- function(coord, drawObjects=TRUE, drawEllipse=FALSE, dataset.name=NU
 	}
 	
 }
+
+#from matrixStats
+colSds <- function (x, center = NULL, ...) {
+	x <- rowVars(t(x), ...)
+	sqrt(x)
+}
+
+rowVars <- function (x, center = NULL, ...) 
+{
+	n <- !is.na(x)
+	n <- rowSums(n)
+	n[n <= 1] <- NA
+	if (is.null(center)) {
+		center <- rowMeans(x, ...)
+	}
+	x <- x - center
+	x <- x * x
+	x <- rowSums(x, ...)
+	x <- x/(n - 1)
+	x
+}
+
+#maxFeatures at most
+MetaSoftThreshold <- function(aMat, maxFeatures, lambda){
+	.rs <- rowSums(abs(aMat))
+	
+	if(!is.null(maxFeatures)) 
+		lambda <- max(lambda, sort(.rs, decreasing=TRUE)[maxFeatures+1])
+	
+	aMat[which(.rs <= lambda),] <- 0 #less than overall threshold
+	
+	tmp <- abs(aMat) - lambda/ncol(aMat) #substract individual threshold
+	tmp[tmp<0] <- 0 #less than individual threshold
+	sign(aMat) * tmp 
+}
+
+#pxn 
+NormalizeMatrix <- function(mat) {
+	.norm <- sqrt(colSums(mat^2))
+	.norm <- ifelse(.norm==0, 1, .norm)
+	sweep(mat, 2, .norm, '/')
+}
+
 
 legend2 <- function (x, y = NULL, legend, fill = NULL, col = par("col"), 
 		border = "black", lty, lwd, pch, angle = 45, density = NULL, 
