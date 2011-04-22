@@ -1,6 +1,6 @@
 
 #prcomp$sdev = svd$d / sqrt(n-1)
-MetaPCA <- function(DList, method=c("Eigen","Angle","RobustAngle","SparseAngle"), robust.var=c("qn","mad"), nPC=2,
+MetaPCA <- function(DList, method=c("Angle","Eigen","RobustAngle","SparseAngle"), robust.var=c("qn","mad"), nPC=2,
 		.weight=rep(1/length(DList),length(DList)), sparse.maxFeatures=NULL, sparse.lambda=NULL, sparse.max.iter=100, sparse.eps=1e-3,
 		.scale=FALSE, .scaleAdjust=TRUE, doPreprocess=TRUE, cutRatioByMean=.4, cutRatioByVar=.4, doImpute=TRUE,
 		na.rm.pct=.1, na.rm.pct.each=.5, verbose=FALSE) 
@@ -28,7 +28,8 @@ MetaPCA <- function(DList, method=c("Eigen","Angle","RobustAngle","SparseAngle")
 		.CovSum <- 0
 		for(i in 1:length(DList)) {
 			if(method=="RobustAngle") {
-				.PC <- pcaPP:::PCAgrid(t(DList[[i]]), k=nPC, method=robust.var, scores=FALSE, center=l1median_HoCr2)
+				requireAll("pcaPP")
+				.PC <- PCAgrid(t(DList[[i]]), k=nPC, method=robust.var, scores=FALSE, center=l1median_HoCr2)
 			} else {
 				DList[[i]][which(is.na(DList[[i]]))] <- 0 #b/c scale of 0/0
 				.PC <- svd(t(DList[[i]]), nu=0) 

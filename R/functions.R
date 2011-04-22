@@ -53,7 +53,6 @@ PreprocessMetaAnalysis <- function(DList, cutRatioByMean=.4, cutRatioByVar=.4, d
 	printLog(paste("# of matched genes :", length(.genes)), verbose)
 	
 	DD <- foreach(dat=iter(DList), .combine=cbind) %do% {
-		#TODO.. if multiple probes of the same gene exist.IQR
 		dat[match(.genes,rownames(dat)),]
 	}
 	
@@ -67,6 +66,7 @@ PreprocessMetaAnalysis <- function(DList, cutRatioByMean=.4, cutRatioByVar=.4, d
 	printLog(paste("# of genes after na.rm threshold:", nrow(DList[[1]])), verbose)
 	
 	if(doImpute) {
+		requireAll("impute")
 		for(i in 1:length(studies)) {
 			if(any(is.na(DList[[i]])))
 				DList[[i]] <- impute.knn(DList[[i]])$data
@@ -97,7 +97,6 @@ PreprocessMetaAnalysis <- function(DList, cutRatioByMean=.4, cutRatioByVar=.4, d
 	return(DList)
 }
 
-#TODO... PC1 PC2 should be modified to general use
 #class: usually disease labels
 #class2: different sources like multiple studies
 PlotPC2D <- function(coord, drawObjects=TRUE, drawEllipse=FALSE, dataset.name=NULL, 
@@ -128,10 +127,19 @@ PlotPC2D <- function(coord, drawObjects=TRUE, drawEllipse=FALSE, dataset.name=NU
 	
 	colnames(coord) <- c("PC1","PC2")
 	
-	if(newPlot)
-		par() 
+	if(newPlot) {
+		.sysname <- Sys.info()["sysname"]
+		if(.sysname=="Windows")
+			windows()
+		else if(.sysname=="Darwin")
+			quartz()
+		else #*nix
+			X11()
+	}
+		 
 	
 	if(drawEllipse) {
+		requireAll(c("ellipse","MASS"))
 		.ellip <- NULL 
 		for(lev in levels(.label)) {
 			.mve <- cov.mve(coord[.label==lev,1:2], method="classical")
@@ -445,4 +453,12 @@ legend2 <- function (x, y = NULL, legend, fill = NULL, col = par("col"),
 printLog <- function(msg, verbose) {
 	if(verbose)
 		print(sprintf("[%s] %s", Sys.time(), msg))
+}
+
+l1median_HoCr2 <- function(X, ...) {
+	pcaPP:::l1median_HoCr(X, ...)$par
+}
+
+l1median_VaZh2 <- function(X, ...) {
+	pcaPP:::l1median_VaZh(X, ...)$par
 }

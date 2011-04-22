@@ -10,10 +10,10 @@ DropDupGenes <- function(dat, isParallel=FALSE, nCores=NULL, na.rm=TRUE) {
 			if(!is.null(nCores))
 				options(cores=nCores)
 			if(.Platform$OS.type == "unix") {
-				requireAll(doMC)
+				requireAll("doMC")
 				registerDoMC()
 			} else { #windows
-				requireAll(doSMP)
+				requireAll("doSMP")
 				.workers <- startWorkers() #default is 3
 				registerDoSMP(.workers)
 			}

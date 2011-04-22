@@ -22,10 +22,10 @@ MetaPCA(DList, method=c("Angle","Eigen","RobustAngle","SparseAngle"), robust.var
 A list of all data matrices; Each data name should be set as the name of each list element. Each data should be a numeric matrix that has genes in the rows and samples in the columns. Row names should be official gene symbols and column names be sample labels.
 }
   \item{method}{
-A vector of four meta PCA methods. The first two methods are basic approaches; the last two are extended approaches of robust PCA and sparse PCA but may be rather slower than the basic methods. Default is ``Angle'', which is angle minimization method. See the details in the reference.
+A vector of four meta PCA methods. The first two methods are basic approaches; the last two are extended approaches of robust PCA and sparse PCA but may be rather slower than the basic methods. Default is "Angle", which is angle minimization method. See the details in the reference.
 }
   \item{robust.var}{
-Robust measure of variance when ``RobustAngle'' method was selected in the method. 
+Robust measure of variance when "RobustAngle" method was selected in the method. 
 }
   \item{nPC}{
 The number of returned PC's, i.e. the number of dimension reduced by PCA.
@@ -34,10 +34,10 @@ The number of returned PC's, i.e. the number of dimension reduced by PCA.
 Weight for each data if information is available. Default is equal weight.
 }
   \item{sparse.maxFeatures}{
-The number of genes left for the Sparse PCA approach. If NULL (default), it is determined based on the default \lambda.
+The number of genes left for the Sparse PCA approach. If NULL (default), it is determined based on the default lambda.
 }
   \item{sparse.lambda}{
-The parameter \lambda which determines the sparsity of loading vectors. The default is calculated as the number of data divided by square root of the number of overall genes.
+The parameter lambda which determines the sparsity of loading vectors. The default is calculated as the number of data divided by square root of the number of overall genes.
 }
   \item{sparse.max.iter}{
 The number of maximum iteration for achieving convergence of sparse loading vectors. Default is 100.
@@ -46,13 +46,13 @@ The number of maximum iteration for achieving convergence of sparse loading vect
 The convergence decision precision level. Default is 1e-3.
 }
   \item{.scale}{
-Whether to apply gene based normalization. Default is FALSE. But for the ``Eigen'' method, gene scaling is recommended for the comparability reason of covariance matrix.
+Whether to apply gene based normalization. Default is FALSE. But for the "Eigen" method, gene scaling is recommended for the comparability reason of covariance matrix.
 }
   \item{.scaleAdjust}{
 Whether to apply scaling adjustment for a comparable visualization. Default is TRUE.
 }
   \item{doPreprocess}{
-Whether to apply gene filtering. Default is TRUE. However ``SparseAngle'' method do not use gene filtering.
+Whether to apply gene filtering. Default is TRUE. However "SparseAngle" method do not use gene filtering.
 }
   \item{cutRatioByMean}{
 Proportion of genes filtered by study-wise mean. Default is 40\%.
@@ -107,6 +107,9 @@ Don Kang (donkang75@gmail.com)
 	metaPC <- MetaPCA(Spellman, method="RobustAngle", doPreprocess=FALSE)
 	metaPC <- MetaPCA(Spellman, method="SparseAngle", doPreprocess=FALSE)
 	#Comparing between usual pca and meta-pca
+	#The first lows are four data sets based on usual PCA, and 
+	#the second rows are by MetaPCA
+	#We're looking for a cyclic pattern.
 	par(mfrow=c(2,4), cex=1, mar=c(0.2,0.2,0.2,0.2))
 	for(i in 1:4) {
 		plot(pc[[i]][,1], pc[[i]][,2], type="n", xlab="", ylab="", xaxt="n", yaxt="n")
@@ -129,8 +132,14 @@ Don Kang (donkang75@gmail.com)
 	#Plotting 4 data in the same space!
 	coord <- foreach(dd=iter(metaPC$x), .combine=rbind) %do% dd$coord
 	PlotPC2D(coord[,1:2], drawEllipse=F, dataset.name="Prostate", .class.order=c("Metastasis","Primary","Normal"), 
-			.class.color=c('red','#838383','blue'), .annotation=T, newPlot=F,
-			.class2=rep(names(metaPC$x), times=sapply(metaPC$x,function(x)nrow(x$coord))), .class2.order=names(metaPC$x), .points.size=1)
+			.class.color=c('red','#838383','blue'), .annotation=T, newPlot=T,
+			.class2=rep(names(metaPC$x), times=sapply(metaPC$x,function(x)nrow(x$coord))), 
+			.class2.order=names(metaPC$x), .points.size=1)
+
+	#In the case of "SparseAngle" method, the top contributing genes for all studies can be determined
+	#For instance, top 20 genes in 1st PC and their coefficients
+	metaPC$v[order(abs(metaPC$v[,1]), decreasing=TRUE),1][1:20] 
+
 }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
