@@ -19,17 +19,17 @@ Installation
 To install this package, save a proper package file for the target OS to the working directory, then run:
 
 ### Windows            
-[MetaPCA_0.1.2.zip] (https://github.com/downloads/donkang75/MetaPCA/MetaPCA_0.1.2.zip)
+[MetaPCA_0.1.2.zip] (http://cran.r-project.org/bin/windows/contrib/r-release/MetaPCA_0.1.2.zip)
 
         install.packages("MetaPCA_0.1.2.zip", repos=NULL, type="win.binary")
 
 ### Mac OS X            
-[MetaPCA_0.1.2.tgz] (https://github.com/downloads/donkang75/MetaPCA/MetaPCA_0.1.2.tgz)
+[MetaPCA_0.1.2.tgz] (http://cran.r-project.org/bin/macosx/leopard/contrib/r-release/MetaPCA_0.1.2.tgz)
 
         install.packages("MetaPCA_0.1.2.tgz", repos=NULL, type="mac.binary")
 
 ### Linux            
-[MetaPCA_0.1.2.tar.gz] (https://github.com/downloads/donkang75/MetaPCA/MetaPCA_0.1.2.tar.gz)
+[MetaPCA_0.1.2.tar.gz] (http://cran.r-project.org/src/contrib/MetaPCA_0.1.2.tar.gz)
 
         install.packages("MetaPCA_0.1.2.tar.gz", repos=NULL, type="source")
 
