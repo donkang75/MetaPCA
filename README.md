@@ -18,7 +18,8 @@ Installation
 --------------
 ### From CRAN (http://cran.r-project.org/)
 
-        install.packages('MetaPCA', dependencies=TRUE)
+        source("http://bioconductor.org/biocLite.R")
+        biocLite('MetaPCA')
 
 Examples
 -------------
