@@ -1,4 +1,4 @@
-MetaPCA: Meta-analysis in the Dimension Reduction of Microarray data
+MetaPCA: Meta-analysis in the Dimension Reduction of Genomic data
 ====================================================================
 
 Introduction
@@ -84,5 +84,5 @@ Examples
 		
 References
 ----------
-Dongwan D. Kang and George C. Tseng. (2011) Meta-PCA: Meta-analysis in the Dimension Reduction of Microarray data. 
+Dongwan D. Kang and George C. Tseng. (2011) Meta-PCA: Meta-analysis in the Dimension Reduction of Genomic data. (In preparation) 
 
