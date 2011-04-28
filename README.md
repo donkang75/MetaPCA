@@ -16,10 +16,22 @@ For the detailed information, please see the references.
 
 Installation
 --------------
-### From CRAN (http://cran.r-project.org/)
+To install this package, save a proper package file for the target OS to the working directory, then run:
 
-        source("http://bioconductor.org/biocLite.R")
-        biocLite('MetaPCA')
+### Windows            
+[MetaPCA_0.1.2.zip] (https://github.com/downloads/donkang75/MetaPCA/MetaPCA_0.1.2.zip)
+
+        install.packages("MetaPCA_0.1.2.zip", repos=NULL, type="win.binary")
+
+### Mac OS X            
+[MetaPCA_0.1.2.tgz] (https://github.com/downloads/donkang75/MetaPCA/MetaPCA_0.1.2.tgz)
+
+        install.packages("MetaPCA_0.1.2.tgz", repos=NULL, type="mac.binary")
+
+### Linux            
+[MetaPCA_0.1.2.tar.gz] (https://github.com/downloads/donkang75/MetaPCA/MetaPCA_0.1.2.tar.gz)
+
+        install.packages("MetaPCA_0.1.2.tar.gz", repos=NULL, type="source")
 
 Examples
 -------------
