@@ -35,7 +35,7 @@ PlotPC2D <- function(coord, drawObjects=TRUE, drawEllipse=FALSE, dataset.name=NU
 		else if(.sysname=="Darwin")
 			quartz()
 		else #*nix
-			X11()
+			try(X11(), TRUE)
 	}
 	
 	
