@@ -2,7 +2,7 @@
 \alias{DropDupGenes}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-MetaPCA: Meta-analysis in the Dimension Reduction of Microarray data
+MetaPCA: Meta-analysis in the Dimension Reduction of Genomic data
 }
 \description{
 When multiple probesets share the same gene symbols, select only the best probeset in terms of IQR
@@ -33,7 +33,7 @@ Whether to remove genes which have no annotation. Default is TRUE.
 A gene expression matrix which has unique genes in rows and samples in columns. 
 }
 \references{
-Dongwan D. Kang and George C. Tseng. (2011) Meta-PCA: Meta-analysis in the Dimension Reduction of Microarray data. 
+Dongwan D. Kang and George C. Tseng. (2011) Meta-PCA: Meta-analysis in the Dimension Reduction of Genomic data. 
 }
 \author{
 Don Kang (donkang75@gmail.com)

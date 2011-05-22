@@ -2,7 +2,7 @@
 \alias{requireAll}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-MetaPCA: Meta-analysis in the Dimension Reduction of Microarray data
+MetaPCA: Meta-analysis in the Dimension Reduction of Genomic data
 }
 \description{
 requireAll description

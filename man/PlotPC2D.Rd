@@ -2,7 +2,7 @@
 \alias{PlotPC2D}
 
 \title{
-MetaPCA: Meta-analysis in the Dimension Reduction of Microarray data
+MetaPCA: Meta-analysis in the Dimension Reduction of Genomic data
 }
 
 \description{
@@ -84,7 +84,7 @@ Location of legend in a plot.
 NA. A PCA plot is drawn.
 }
 \references{
-Dongwan D. Kang and George C. Tseng. (2011) Meta-PCA: Meta-analysis in the Dimension Reduction of Microarray data. 
+Dongwan D. Kang and George C. Tseng. (2011) Meta-PCA: Meta-analysis in the Dimension Reduction of Genomic data. 
 }
 \author{
 Don Kang (donkang75@gmail.com)
@@ -104,7 +104,7 @@ Don Kang (donkang75@gmail.com)
 	data(prostate)
 	metaPC <- MetaPCA(prostate, method="Angle", doPreprocess=FALSE)
 	#Plotting 4 data in the same space with ellipses overlayed!
-	coord <- foreach(dd=iter(metaPC$x), .combine=rbind) %do% dd$coord
+	coord <- foreach(dd=iter(metaPC$x), .combine=rbind) \%do\% dd$coord
 	PlotPC2D(coord[,1:2], drawEllipse=T, dataset.name="Prostate", .class.order=c("Metastasis","Primary","Normal"), 
 			.class.color=c('red','#838383','blue'), .annotation=T, newPlot=T,
 			.class2=rep(names(metaPC$x), times=sapply(metaPC$x,function(x)nrow(x$coord))), 

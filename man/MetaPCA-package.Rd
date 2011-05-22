@@ -2,7 +2,7 @@
 \alias{MetaPCA-package}
 \docType{package}
 \title{
-MetaPCA: Meta-analysis in the Dimension Reduction of Microarray data
+MetaPCA: Meta-analysis in the Dimension Reduction of Genomic data
 }
 \description{
 MetaPCA implements simultaneous dimension reduction using PCA when multiple studies are combined. We propose two basic ideas to find a common PC subspace by eigenvalue maximization approach and angle minimization approach, and we extend the concept to incorporate Robust PCA and Sparse PCA in the meta-analysis realm.
@@ -11,8 +11,8 @@ MetaPCA implements simultaneous dimension reduction using PCA when multiple stud
 \tabular{ll}{
 Package: \tab MetaPCA\cr
 Type: \tab Package\cr
-Version: \tab 0.1.2\cr
-Date: \tab 2011-04-21\cr
+Version: \tab 0.1.3\cr
+Date: \tab 2011-05-22\cr
 License: \tab GPL-2\cr
 LazyLoad: \tab yes\cr
 }
@@ -21,7 +21,7 @@ LazyLoad: \tab yes\cr
 Don Kang <donkang75@gmail.com>
 }
 \references{
-Dongwan D. Kang and George C. Tseng. (2011) Meta-PCA: Meta-analysis in the Dimension Reduction of Microarray data. 
+Dongwan D. Kang and George C. Tseng. (2011) Meta-PCA: Meta-analysis in the Dimension Reduction of Genomic data. 
 }
 \keyword{ PCA }
 \keyword{ MetaAnalysis }% __ONLY ONE__ keyword per line
@@ -64,7 +64,7 @@ Dongwan D. Kang and George C. Tseng. (2011) Meta-PCA: Meta-analysis in the Dimen
 	metaPC <- MetaPCA(prostate, method="RobustAngle", doPreprocess=FALSE)
 	metaPC <- MetaPCA(prostate, method="SparseAngle", doPreprocess=FALSE)
 	#Plotting 4 data in the same space!
-	coord <- foreach(dd=iter(metaPC$x), .combine=rbind) %do% dd$coord
+	coord <- foreach(dd=iter(metaPC$x), .combine=rbind) \%do\% dd$coord
 	PlotPC2D(coord[,1:2], drawEllipse=F, dataset.name="Prostate", .class.order=c("Metastasis","Primary","Normal"), 
 			.class.color=c('red','#838383','blue'), .annotation=T, newPlot=T,
 			.class2=rep(names(metaPC$x), times=sapply(metaPC$x,function(x)nrow(x$coord))), 

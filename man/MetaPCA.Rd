@@ -2,7 +2,7 @@
 \alias{MetaPCA}
 
 \title{
-MetaPCA: Meta-analysis in the Dimension Reduction of Microarray data
+MetaPCA: Meta-analysis in the Dimension Reduction of Genomic data
 }
 
 \description{
@@ -80,7 +80,7 @@ Whether to print logs. Default is FALSE.
 list object having the specified number of PC's of all data sets and loading matrix of meta subspace.
 }
 \references{
-Dongwan D. Kang and George C. Tseng. (2011) Meta-PCA: Meta-analysis in the Dimension Reduction of Microarray data. 
+Dongwan D. Kang and George C. Tseng. (2011) Meta-PCA: Meta-analysis in the Dimension Reduction of Genomic data. 
 }
 \author{
 Don Kang (donkang75@gmail.com)
@@ -130,7 +130,7 @@ Don Kang (donkang75@gmail.com)
 	metaPC <- MetaPCA(prostate, method="RobustAngle", doPreprocess=FALSE)
 	metaPC <- MetaPCA(prostate, method="SparseAngle", doPreprocess=FALSE)
 	#Plotting 4 data in the same space!
-	coord <- foreach(dd=iter(metaPC$x), .combine=rbind) %do% dd$coord
+	coord <- foreach(dd=iter(metaPC$x), .combine=rbind) \%do\% dd$coord
 	PlotPC2D(coord[,1:2], drawEllipse=F, dataset.name="Prostate", .class.order=c("Metastasis","Primary","Normal"), 
 			.class.color=c('red','#838383','blue'), .annotation=T, newPlot=T,
 			.class2=rep(names(metaPC$x), times=sapply(metaPC$x,function(x)nrow(x$coord))), 

@@ -2,7 +2,7 @@
 \alias{PreprocessMetaAnalysis}
 
 \title{
-MetaPCA: Meta-analysis in the Dimension Reduction of Microarray data
+MetaPCA: Meta-analysis in the Dimension Reduction of Genomic data
 }
 
 \description{
@@ -43,7 +43,7 @@ Whether to print logs. Default is FALSE.
 list object of all data matrices after filtering and imputation.
 }
 \references{
-Dongwan D. Kang and George C. Tseng. (2011) Meta-PCA: Meta-analysis in the Dimension Reduction of Microarray data. 
+Dongwan D. Kang and George C. Tseng. (2011) Meta-PCA: Meta-analysis in the Dimension Reduction of Genomic data. 
 }
 \author{
 Don Kang (donkang75@gmail.com)
