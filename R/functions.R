@@ -21,6 +21,9 @@ rowVars <- function (x, center = NULL, ...)
 
 #maxFeatures at most
 MetaSoftThreshold <- function(aMat, maxFeatures, lambda){
+	if(!is.matrix(aMat))
+		aMat <- as.matrix(aMat)
+	
 	.rs <- rowSums(abs(aMat))
 	
 	if(!is.null(maxFeatures)) 

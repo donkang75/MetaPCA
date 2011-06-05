@@ -134,9 +134,10 @@ MetaPCA <- function(DList, method=c("Angle","Eigen","RobustAngle","SparseAngle")
 		}
 		
 		.chosen <- which(rowSums(abs(Betas))>0)
-		
+		if(length(.chosen)<1)
+			stop("lambda is too large. No features are left")
 		#Find Meta-PC which minimize in-between angles
-		.CovSum <- Reduce('+', lapply(1:length(..DList), function(i) Betas[.chosen,i] %*% t(Betas[.chosen,i])))
+		.CovSum <- Reduce('+', lapply(1:length(..DList), function(i) Betas[.chosen,i,drop=FALSE] %*% t(Betas[.chosen,i,drop=FALSE])))
 		.eig <- eigen(.CovSum, symmetric=TRUE)
 		
 		rotation[.chosen,k] <- .eig$vectors[,1] 
