@@ -81,7 +81,9 @@ MetaPCA <- function(DList, method=c("Angle","Eigen","RobustAngle","SparseAngle")
 	
 	if(is.null(lambda))
 		lambda <- rep(length(DListF)/sqrt(length(features)), nPC)
-	
+	else
+		lambda <- lambda * length(DListF) #to make lambda be comparable to usual spca 
+				
 	stopifnot(nPC==length(lambda) & nPC <= min(sapply(DListF, ncol)) - 1)
 	
 	rotation <- matrix(0, length(features), nPC)
