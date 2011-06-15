@@ -87,7 +87,7 @@ NA. A PCA plot is drawn.
 Dongwan D. Kang and George C. Tseng. (2011) Meta-PCA: Meta-analysis in the Dimension Reduction of Genomic data. 
 }
 \author{
-Don Kang (donkang75@gmail.com)
+Don Kang (donkang75@gmail.com) and George Tseng (ctseng@pitt.edu)
 }
 \note{
 %%  ~~further notes~~

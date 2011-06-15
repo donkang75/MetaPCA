@@ -46,7 +46,7 @@ list object of all data matrices after filtering and imputation.
 Dongwan D. Kang and George C. Tseng. (2011) Meta-PCA: Meta-analysis in the Dimension Reduction of Genomic data. 
 }
 \author{
-Don Kang (donkang75@gmail.com)
+Don Kang (donkang75@gmail.com) and George Tseng (ctseng@pitt.edu)
 }
 \note{
 %%  ~~further notes~~
@@ -60,7 +60,7 @@ Don Kang (donkang75@gmail.com)
 \examples{
 \dontrun{
 DList <- PreprocessMetaAnalysis(list(Yu=Yu, Lapointe=Lapointe, Tomlins=Tomlins, Varambally=Varambally), 
-		cutRatioByMean=.1, cutRatioByVar=.1, doImpute=T, na.rm.pct=.2) #3056
+		cutRatioByMean=.1, cutRatioByVar=.1, doImpute=T, na.rm.pct=.2)
 str(DList)
 }
 }

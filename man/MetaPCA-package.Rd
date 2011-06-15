@@ -11,14 +11,14 @@ MetaPCA implements simultaneous dimension reduction using PCA when multiple stud
 \tabular{ll}{
 Package: \tab MetaPCA\cr
 Type: \tab Package\cr
-Version: \tab 0.1.3\cr
-Date: \tab 2011-05-22\cr
+Version: \tab 0.1.4\cr
+Date: \tab 2011-06-15\cr
 License: \tab GPL-2\cr
 LazyLoad: \tab yes\cr
 }
 }
 \author{
-Don Kang <donkang75@gmail.com>
+Don Kang (donkang75@gmail.com) and George Tseng (ctseng@pitt.edu)
 }
 \references{
 Dongwan D. Kang and George C. Tseng. (2011) Meta-PCA: Meta-analysis in the Dimension Reduction of Genomic data. 

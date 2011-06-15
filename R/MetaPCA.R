@@ -115,7 +115,7 @@ MetaPCA <- function(DList, method=c("Angle","Eigen","RobustAngle","SparseAngle")
 		#Find convergence of Betas
 		while(it > 1 & diff > eps) {
 			BetasNew <- foreach(i=1:length(..DList), .combine=cbind) %do% {
-				z <- svd(t(..DList[[i]]) %*% ..DList[[i]] %*% Betas[,i], )
+				z <- svd(t(..DList[[i]]) %*% ..DList[[i]] %*% Betas[,i])
 				.alpha <- z$u %*% t(z$v)
 				
 				.beta <- drop(t(..DList[[i]]) %*% ..DList[[i]] %*% .alpha)
